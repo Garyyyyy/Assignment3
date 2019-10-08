@@ -21,13 +21,13 @@ public class EmailGenerator {
         this.outputPath = outputPath;
     }
 
-    public void generate(){
-        String csvFile = "/Users/ygong/Downloads/insurancecompanymembers.csv";
+    public void generate(String csvFile){
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
         String template = readTemplateToString();
         try{
+            // read s\csv file into memory
             br = new BufferedReader(new FileReader(csvFile));
             int count = 0;
             while ((line = br.readLine()) != null) {
@@ -45,11 +45,11 @@ public class EmailGenerator {
                 String new_template = template;
                 String nt = new_template.replaceAll("\\["," ").replaceAll("\\]", " ");
                 System.out.println(nt);
-//                new_template.replaceAll("[\\[\\]]", "");
+//                new_template.replaceAll("[[vhvj]]", "");
                 String finalTemplate = nt.replaceAll("email", customer.getEmail()).replaceAll("first_name", customer.getFirst_name()).replaceAll("last_name", customer.getLast_name())
                 .replaceAll("address", customer.getAddress()).replaceAll("city", customer.getCity()).replaceAll("state", customer.getState()).replaceAll("zip"
                         , customer.getZip());
-                System.out.println(finalTemplate);
+//                System.out.println(finalTemplate);
                 writeTemplateToFile(finalTemplate, customer);
             }
         }catch(FileNotFoundException e){

@@ -19,7 +19,7 @@ public class Main {
         csvFilePath = getValidCsvFilePath(args);
 
         EmailGenerator emailGen = new EmailGenerator(sendType, templateType, templatePath, csvFilePath);
-        emailGen.generate();
+        emailGen.generate(csvFilePath);
 //        System.out.println(emailGen.readTemplateToString());
 
     }
